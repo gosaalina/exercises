@@ -18,7 +18,7 @@ public class WeatherExercise extends Excercise<Integer, Double> {
 	@Override
 	public void solve(String fileName) {
 		List<DataItem<Integer, Double>> data = readFile(fileName);
-		List<DataItem<Integer, Double>> minimumSpreadDay = minimumSpreadDay(data);
+		List<DataItem<Integer, Double>> minimumSpreadDay = minimumSpread(data);
 		if (minimumSpreadDay == null || minimumSpreadDay.isEmpty()) {
 			System.out.println("No data found");
 		} else {
@@ -28,25 +28,6 @@ public class WeatherExercise extends Excercise<Integer, Double> {
 			System.out.println();
 		}
 
-	}
-
-	private static List<DataItem<Integer, Double>> minimumSpreadDay(List<DataItem<Integer, Double>> data) {
-		List<DataItem<Integer, Double>> response = new ArrayList<>();
-		if (data != null) {
-			DataItem<Integer, Double> min = data.get(0);
-			response.add(min);
-			for (int i = 1; i < data.size() - 1; i++) {
-				int compare = min.compareTo(data.get(i));
-				if (compare == 0) {
-					response.add(data.get(i));
-				} else if (compare == 1) {
-					min = data.get(i);
-					response.clear();
-					response.add(min);
-				}
-			}
-		}
-		return response;
 	}
 
 	@Override

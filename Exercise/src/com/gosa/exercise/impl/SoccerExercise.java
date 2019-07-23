@@ -19,7 +19,7 @@ public class SoccerExercise extends Excercise<String, Integer> {
 	@Override
 	public void solve(String fileName) {
 		List<DataItem<String, Integer>> data = readFile(fileName);
-		List<DataItem<String, Integer>> minimumSpreadDay = minimumSpreadDay(data);
+		List<DataItem<String, Integer>> minimumSpreadDay = minimumSpread(data);
 		if (minimumSpreadDay == null || minimumSpreadDay.isEmpty()) {
 			System.out.println("No data found");
 		} else {
@@ -27,25 +27,6 @@ public class SoccerExercise extends Excercise<String, Integer> {
 				System.out.println(minimumSpreadDay.get(i).getName());
 			}
 		}
-	}
-
-	private List<DataItem<String, Integer>> minimumSpreadDay(List<DataItem<String, Integer>> data) {
-		List<DataItem<String, Integer>> response = new ArrayList<>();
-		if (data != null) {
-			DataItem<String, Integer> min = data.get(0);
-			response.add(min);
-			for (int i = 1; i < data.size() - 1; i++) {
-				int compare = min.compareTo(data.get(i));
-				if (compare == 0) {
-					response.add(data.get(i));
-				} else if (compare == 1) {
-					min = data.get(i);
-					response.clear();
-					response.add(min);
-				}
-			}
-		}
-		return response;
 	}
 
 	@Override
